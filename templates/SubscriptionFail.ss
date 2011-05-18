@@ -1,0 +1,1 @@
+<p>Subscription failed - try again later!</p>

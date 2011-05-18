@@ -25,7 +25,9 @@ class Def_Newsletter extends Page {
         $f->addFieldToTab('Root.Content.Lijsten', $listField);
         return $f;
 	}
-	
+}
+
+class Def_Newsletter_Controller extends Page_Controller {
 }
 
 //class NewsLetterPage Extends Page {

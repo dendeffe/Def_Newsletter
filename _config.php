@@ -1,4 +1,9 @@
 <?php
+Director::addRules(100, array(
+	'newslettertools//$Action' => 'Def_NewsLetter_Tools'
+));
+
+
 /*
 
 

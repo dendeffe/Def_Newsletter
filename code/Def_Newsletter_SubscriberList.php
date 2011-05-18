@@ -25,3 +25,6 @@ class Def_Newsletter_SubscriberList Extends Page {
 		return $f;
 	}
 }
+
+class Def_Newsletter_SubscriberList_Controller Extends Page_Controller {
+}
