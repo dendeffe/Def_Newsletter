@@ -3,9 +3,11 @@
 
 ### Installation ###
 
-1. Download and install Def\_Mailtools. [https://github.com/dendeffe/Def_MailTools](https://github.com/dendeffe/Def_MailTools)
+1. Download and install [Def\_Mailtools](https://github.com/dendeffe/Def_MailTools). Be sure to configure the sendgrid details (see the example in this module).
 
-2. Drag Def\_Newsletter into your SilverStripe site and run dev/build.
+2. Download and install [DataObjectManager](https://github.com/unclecheese/DataObjectManager).
+
+3. Drag Def\_Newsletter into your SilverStripe site and run dev/build.
 
 ### Features ###
 
