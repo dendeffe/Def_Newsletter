@@ -1,6 +1,6 @@
 <?php
 
-class Def_Newsletter_Tools extends ContentController {
+class DefNewsletterTools extends ContentController {
 	public static $UnsubscribeAddress = '';
 	public static $Lists = '';
 	
@@ -92,7 +92,7 @@ class Def_Newsletter_Tools extends ContentController {
 		// Get Subscriber objects for all emails you want to check
 		if($isSubscribedTo)
 		{
-			$mySubscribers = DataObject::get('Def_Newsletter_Subscriber', "Email='$myEmail'");
+			$mySubscribers = DataObject::get('DefNewsletterSubscriber', "Email='$myEmail'");
 		}
 		
 	
@@ -105,15 +105,15 @@ class Def_Newsletter_Tools extends ContentController {
 				// decide if you want to search for subscribed or unsubscibed to
 				if($isSubscribedTo)
 				{
-					$whereClause = "Def_Newsletter_SubscriberID = $subscriber->ID";
+					$whereClause = "DefNewsletterSubscriberID = $subscriber->ID";
 				} else {
-					$whereClause = "Def_Newsletter_SubscriberID != $subscriber->ID";
+					$whereClause = "DefNewsletterSubscriberID != $subscriber->ID";
 				}
 				
 				// get all connections in the DB
 				$myQuery = new SQLQuery(
 					$select = "*",
-					$from = array("Def_Newsletter_SubscriberList_Def_Newsletter_Subscribers"),
+					$from = array("DefNewsletterSubscriberList_DefNewsletterSubscribers"),
 					// return either subscribedTo or not subscribedTo lists
 					$where = $whereClause,
 					$orderby = "",
@@ -124,8 +124,8 @@ class Def_Newsletter_Tools extends ContentController {
 				$result = $myQuery->execute();
 				// build the array for subscribed lists
 				foreach($result as $row) {
-					$subscriberID = $row['Def_Newsletter_SubscriberID'];
-					$newsletterList = DataObject::get_by_id("Page", $row['Def_Newsletter_SubscriberListID']);
+					$subscriberID = $row['DefNewsletterSubscriberID'];
+					$newsletterList = DataObject::get_by_id("Page", $row['DefNewsletterSubscriberListID']);
 					if($newsletterList)
 					{
 						$mySubscribedLists[$newsletterList->ID . '_' . $subscriberID] = $newsletterList->Title;
@@ -134,7 +134,7 @@ class Def_Newsletter_Tools extends ContentController {
 			}
 			return $mySubscribedLists;
 		} else if(!$isSubscribedTo) {
-			$allLists = DataObject::get('Def_Newsletter_SubscriberList');
+			$allLists = DataObject::get('DefNewsletterSubscriberList');
 			foreach($allLists as $row) {
 				$mySubscribedLists[$row->ID . '_0'] = $row->Title;
 			}
@@ -156,14 +156,14 @@ class Def_Newsletter_Tools extends ContentController {
 				$this,
 				"subscribeForm",
 				$mainFieldset = new FieldSet(
-					$emailField = new EmailField('Email', 'E-mail adres*:'),
-					$selectionField = new CheckBoxSetField('subscribeTo', 'Kies op welke lijsten je wil inschrijven*:', $SubscribedList)
+					$emailField = new EmailField('Email', 'Email*:'),
+					$selectionField = new CheckBoxSetField('subscribeTo', 'Choose which newsletters you want to subscribe to*:', $SubscribedList)
 				),
 				new FieldSet(
-					new FormAction('subscribeAction', 'Inschrijven')
+					new FormAction('subscribeAction', 'Subscribe')
 				), $validator
 			);
-			$selectionField->setCustomValidationMessage('Kies minstens 1 lijst waar je op wil inschrijven.');
+			$selectionField->setCustomValidationMessage('Choose at least one newsletter to subscribe to.');
 			return $subscribeForm;
 	}
 	
@@ -178,13 +178,13 @@ class Def_Newsletter_Tools extends ContentController {
 				$this,
 				"unsubscribeForm",
 				$mainFieldset = new FieldSet(
-					$selectionField = new CheckBoxSetField('UnsubScribeFrom', 'Je bent geabonneerd op onderstaande deze lijsten. Vink aan bij welke je jezelf wil uitschrijven:', $SubscribedList)
+					$selectionField = new CheckBoxSetField('UnsubScribeFrom', 'You are subscribed to these newsletters. Choose from which ones you want to unsubscribe:*', $SubscribedList)
 				),
 				new FieldSet(
-					new FormAction('unsubscribeAction', 'Uitschrijven')
+					new FormAction('unsubscribeAction', 'Unsubscribe')
 				), $validator
 			);
-			$selectionField->setCustomValidationMessage('Kies minstens 1 lijst waar je jezelf van wil uitschrijven.');
+			$selectionField->setCustomValidationMessage('Choose at least one newsletter to unsubscribe from.');
 			return $unsubscribeForm;
 	}
 	
@@ -201,8 +201,8 @@ class Def_Newsletter_Tools extends ContentController {
 				
 				$myQuery = new SQLQuery(
 					$select = "*",
-					$from = array("Def_Newsletter_SubscriberList_Def_Newsletter_Subscribers"),
-					$where = "Def_Newsletter_SubscriberID = $subscriberID AND Def_Newsletter_SubscriberListID = $newsletterID"
+					$from = array("DefNewsletterSubscriberList_DefNewsletterSubscribers"),
+					$where = "DefNewsletterSubscriberID = $subscriberID AND DefNewsletterSubscriberListID = $newsletterID"
 				);
 				$myQuery->delete = true;
 				$result = $myQuery->execute();
@@ -222,12 +222,12 @@ class Def_Newsletter_Tools extends ContentController {
 			{	
 				$myList = explode('_', $list);
 				$myList = $myList[0];
-				$myListTitle = DataObject::get_by_id('Def_Newsletter_SubscriberList', $myList);
+				$myListTitle = DataObject::get_by_id('DefNewsletterSubscriberList', $myList);
 				$myListTitle = $myListTitle->Title;
 				$myEmail = $data['Email'];
 				$myPassword = $this->createRandomPassword();
 				
-				$myNewSubscriber = new Def_Newsletter_Subscriber_Unapproved;
+				$myNewSubscriber = new DefNewsletterSubscriberUnapproved;
 				$myNewSubscriber->Email = $myEmail;
 				$myNewSubscriber->List = $myList;
 				$myNewSubscriber->Password = $myPassword;
@@ -255,18 +255,18 @@ class Def_Newsletter_Tools extends ContentController {
 		if($urlConfirmCode[0] && is_numeric($urlConfirmCode[0]))
 		{
 
-			$myUnapprovedSubscriber = DataObject::get_by_id('Def_Newsletter_Subscriber_Unapproved', $urlConfirmCode[0]);
+			$myUnapprovedSubscriber = DataObject::get_by_id('DefNewsletterSubscriberUnapproved', $urlConfirmCode[0]);
 
 			// check if the passwords match
 			if($myUnapprovedSubscriber->Password == $urlConfirmCode[1])
 			{
-				$newsLetterList = DataObject::get_by_id('Def_Newsletter_SubscriberList', $myUnapprovedSubscriber->List);
+				$newsLetterList = DataObject::get_by_id('DefNewsletterSubscriberList', $myUnapprovedSubscriber->List);
 				// Create the subscriber
-				$myApprovedSubscriber = new Def_Newsletter_Subscriber();
+				$myApprovedSubscriber = new DefNewsletterSubscriber();
 				$myApprovedSubscriber->Email = $myUnapprovedSubscriber->Email;
 				$myApprovedSubscriber->write();
 				// Add the subcriber to the list
-				$newsLetterList->Def_Newsletter_Subscribers()->add($myApprovedSubscriber);
+				$newsLetterList->DefNewsletterSubscribers()->add($myApprovedSubscriber);
 				// Change the password so there can not be any duplicate subscriptions
 				$myUnapprovedSubscriber->Password = 0;
 				$myUnapprovedSubscriber->write();
@@ -310,16 +310,16 @@ class Def_Newsletter_Tools extends ContentController {
 
 	}
 	
-   function SendConfirmationMail($myList, $myEmail, $myPassword, $myListTitle, $mySubscriberID) {
+	function SendConfirmationMail($myList, $myEmail, $myPassword, $myListTitle, $mySubscriberID) {
 		$recipients = array($myEmail);
-		
-		$htmlContent = "<h3>Bevestig je inschrijving op de nieuwsbrief: " . $myListTitle . "</h3>
-		<p>Om je inschrijving te bevestigen klik je op deze link: <a href=\"" . Director::absoluteBaseURL() . "newslettertools/confirmSubscription/" . $mySubscriberID . "_" . $myPassword  . "\">Bevestig inschrijving</a></p>";
-		$plainTextContent = "Bevestig je inschrijving op de nieuwsbrief: " . $myListTitle . "\n\nOpen deze link in je browser: " . Director::absoluteBaseURL() . "newslettertools/confirmSubscription/" . $mySubscriberID . "_" . $myPassword;
+
+		$htmlContent = "<h3>Confirm your subscription to this newsletter: " . $myListTitle . "</h3>
+		<p>Click the following link to confirm your subscription: <a href=\"" . Director::absoluteBaseURL() . "newslettertools/confirmSubscription/" . $mySubscriberID . "_" . $myPassword  . "\">Confirm your subscription</a></p>";
+		$plainTextContent = "Confirm your subscription to the newsletter: " . $myListTitle . "\n\nOpen this link in your browser: " . Director::absoluteBaseURL() . "newslettertools/confirmSubscription/" . $mySubscriberID . "_" . $myPassword;
 		$myMail = Def_MailTools::BuildMail($htmlContent, $plainTextContent, 'MailHeader', 'NewsletterMailFooter');
 
    		// send message 
-   		if (Def_MailTools::send_mail_sendgrid($recipients, 'Bevestig je inschrijving op de mailinglijst', $myMail, 'Subscribe to mailinglist', false))
+   		if (Def_MailTools::send_mail_sendgrid($recipients, 'Confirm your subscription', $myMail, '', false))
    		{
    		  return true;
    		}

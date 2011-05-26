@@ -2,20 +2,18 @@ $RedirectNonAdmins
 
 <% if IsAdmin %>
 	$HTMLHeader
-	<h1 id="mailPreview">Voorvertoning</h1>
-	
-	$MailHeader
-	$MailContent
-	$MailFooter
-
+	<h1>Preview</h1>
+	<div id="mailPreview">
+	$MailContentPreview
+	</div>
 	<div id="mailInfo">
 		<div id="mailMeta">
 			<% if AlreadySent %>
-				<h4 id="status" class="sent">Reeds verstuurd</h4>
+				<h4 id="status" class="sent">This mail has already been sent.</h4>
 			<% else %>
-				<h4 id="status" class="notSent">Nog niet verstuurd</h4>
+				<h4 id="status" class="notSent">This mail has not yet been sent.</h4>
 			<% end_if %>
-			<h4>Gekoppeld aan deze maillijsten</h4>
+			<h4>This e-mail is coupled to these mailing lists:</h4>
 			<% if Lists %>
 				<ul>
 				<% control Lists %>
@@ -23,18 +21,17 @@ $RedirectNonAdmins
 				<% end_control %>
 				</ul>
 			<% else %>
-			<p>Geen maillijsten</p>
+			<p>No mailing lists selected</p>
 			<% end_if %>
-			<h4>En deze emailadressen</h4>
+			<h4>And these Email adresses:</h4>
 			$DisplayRecipients
 		</div>
 		<div id="mailActions">
-		<h4>Stuur een testmail naar dit adres</h4>
+		<h4>Send a testmail:</h4>
 		$TestMailForm
-		<h4>Stuur de nieuwsbrief naar de volledige lijst</h4>
+		<h4>Send to the entire list:</h4>
 		$SendEntireListForm
 		</div>
 	</div><!-- #mailInfo -->
-	
 	$HTMLFooter
 <% end_if %>

@@ -1,4 +1,4 @@
-newsletter
+<p>Unsubscribe link - to do: make this work again</p>
 </td>
 </tr>
 
@@ -15,3 +15,4 @@ newsletter
 </td>
 </tr>
 </table>
+</body>
