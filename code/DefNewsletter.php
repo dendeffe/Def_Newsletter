@@ -82,6 +82,16 @@ class DefNewsletter_Controller extends Page_Controller {
 		}
 	}
 	
+	function UnsubscribeLinks($MyRecipients)
+	{
+		$myUnsubscribeLinks = array();
+		for($x = 0; $x < count($MyRecipients); $x++)
+		{
+			$myUnsubscribeLinks[$x] = Director::absoluteBaseURL() . "newslettertools/unsubscribe/" . $MyRecipients[$x]; 
+		}
+		return $myUnsubscribeLinks;
+	}
+	
 	function SendEntireListForm(){
 		$sendEntireListForm = new Form(
 			$this,
@@ -98,12 +108,18 @@ class DefNewsletter_Controller extends Page_Controller {
 	function SendEntireList() {
 		if($this->IsAdmin()) {
 			$myRecipients = $this->Recipients();
+			
+			// Define the extra values that have to be added
+			$myUnsubscribeLinks = $this->UnsubscribeLinks($myRecipients);
+			$extraValues = array(
+				'-unsublink-' => $myUnsubscribeLinks
+			);
+			
 		
 			$htmlContent = $this->Content;
 			$myMail = Def_MailTools::BuildMail($htmlContent, '', 'NewsletterMailHeader', 'NewsletterMailFooter');
 			
-		
-			if (Def_MailTools::send_mail_sendgrid($myRecipients, $this->Title, $myMail))
+			if (Def_MailTools::send_mail_sendgrid($myRecipients, $this->Title, $myMail, "Uncategorized", false, "smtp.sendgrid.com", "465", $extraValues))
 			{
 				//return true;
 			}

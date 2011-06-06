@@ -1,4 +1,4 @@
-<p>Unsubscribe link - to do: make this work again</p>
+<p><a href="-unsublink-">Unsubscribe link</a></p>
 </td>
 </tr>
 
