@@ -84,7 +84,7 @@ class DefNewsletter_Controller extends Page_Controller {
 			$mainFieldset = new FieldSet(
 			),
 			new FieldSet(
-				new FormAction('SendEntireList', 'Send')
+				new FormAction('SendEntireList', 'Send to the entire list')
 			)
 		);
 		return $sendEntireListForm;

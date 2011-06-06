@@ -15,4 +15,5 @@
 </td>
 </tr>
 </table>
+</div><!-- .def_newsletter -->
 </body>

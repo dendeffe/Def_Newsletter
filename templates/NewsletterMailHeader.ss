@@ -9,74 +9,76 @@
 
 <body>
 <style>
-	h1
+	.def_newsletter h1
 	{
 		color: #31C40E;
 		font-size: 22px;
 		font-family: "Century Gothic",Helvetica,Geneva,Arial,SunSans-Regular,sans-serif;
 		font-weight: normal;
 	}
-	h2
+	.def_newsletter h2
 	{
 		color: #333333;
 		font-size: 16px;
 		font-family: "Century Gothic",Helvetica,Geneva,Arial,SunSans-Regular,sans-serif;
 		font-weight: normal;
 	}
-	h3
+	.def_newsletter h3
 	{
 		color: #333333;
 		font-size: 20px;
 		font-family: Verdana,arial,sans-serif;
 		font-weight: normal;
 	}
-	h4
+	.def_newsletter h4
 	{
 		color: #333333;
 		font-size: 18px;
 		font-family: Verdana,arial,sans-serif;
 		font-weight: normal;
 	}
-	h5
+	.def_newsletter h5
 	{
 		color: #333333;
 		font-size: 16px;
 		font-family: Verdana,arial,sans-serif;
 		font-weight: normal;
 	}
-	h6
+	.def_newsletter h6
 	{
 		color: #333333;
 		font-size: 14px;
 		font-family: Verdana,arial,sans-serif;
 		font-weight: normal;
 	}
-	a
+	.def_newsletter a
 	{
 		color: #004FC4;
 		font-family: Verdana,arial,sans-serif;
 	}
-	table
+	.def_newsletter table
 	{
 		color: #333333;
 		font-family: Verdana,arial,sans-serif;
 		font-size: 14px;
 	}
-	p
+	.def_newsletter p
 	{
 		color: #333333;
 		font-family: Verdana,arial,sans-serif;
 		font-size: 11px;
 	}
-	img
+	.def_newsletter img
 	{
 		border: 0;
 	}
-	.orderOverview td
+	.def_newsletter .orderOverview td
 	{
 		border: 1px solid #000;
 	}
 </style>
+<!-- seperates the html mail layout from the send page -->
+<div class="def_newsletter">
 <table width="100%" cellpadding="10" cellspacing="0" align="center">
 <tr>
 <td>	

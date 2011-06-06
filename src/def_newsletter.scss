@@ -1,0 +1,197 @@
+@import "blueprint/reset";
+
+body
+{
+	background: #8B9FAF;
+}
+
+#mailPreviewHeader
+{
+	background: #031F3A url('../images/headerBG.jpg');
+	h1
+	{
+		color: #3CA9E5;
+		font-family: arial, sans-serif;
+		font-size: 14px;
+		line-height: 48px;
+		padding: 0 20px;
+		width: 1000px;
+		margin: 0 auto;
+		span
+		{
+			color: #fff;
+		}
+	}
+}
+
+#mailPreview
+{
+	background: #BACDD9 url('../images/mailContentContainer.jpg') repeat-x 0 bottom;
+	padding: 20px 0 35px 0;
+	table
+	{
+		margin: 0 auto;
+	}
+}
+
+#mailContentContainer
+{
+	width: 1000px;
+	margin: 0 auto;
+	background: #fff;
+}
+
+#mailInfo
+{
+	width: 960px;
+	overflow: hidden;
+	padding: 20px;
+	margin: 30px auto 0 auto;
+	background: #E9EDEF;
+	border-radius: 5px;
+	border: 1px solid #717171;
+}
+
+#mailMeta
+{
+	float: left;
+	width: 400px;
+	padding: 0 50px 0 0;
+	font-family: arial, sans-serif;
+	font-size: 14px;
+	#status
+	{
+		width: 200px;
+		margin: 0 auto 20px auto;
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 18px;
+		padding: 20px;
+		font-weight: 700;
+	}
+	
+	.notSent
+	{
+		border: 1px solid #E1C0A0;
+		background: #E78F3A;
+		color: #FEF6CF;
+	}
+	
+	.sent
+	{
+		border: 1px solid #DBFFBD;
+		background: #5AA41E;
+		color: #C1FF8F;
+	}
+	
+	h5
+	{
+		font-size: 16px;
+		font-weight: 700;
+		color: #404040;
+		padding: 0 0 5px 0;
+		border-bottom: 1px solid #c3c3c3;
+	}
+	
+	#mailingLists
+	{
+		float: left;
+		width: 180px;
+		margin: 0 20px 0 0;
+		ul
+		{
+			padding: 10px 0 0 0;
+			border-top: 1px solid #fff;
+			list-style-position: inside;
+			font-size: 12px;
+		}
+	}
+	
+	#mailAdresses
+	{
+		float: left;
+		width: 200px;
+		ul
+		{
+			padding: 10px 0 0 0;
+			border-top: 1px solid #fff;
+			list-style-position: inside;
+			font-size: 12px;
+		}
+	}
+}
+
+#mailActions
+{
+	float: left;
+	width: 510px;
+}
+
+#testmail
+{
+	float: left;
+	width: 255px;
+	padding: 0 20px 0 0;
+	font-family: arial, sans-serif;
+	font-size: 12px;
+	h4
+	{
+		font-size: 16px;
+		font-weight: 700;
+		color: #404040;
+		padding: 0 0 5px 0;
+		border-bottom: 1px solid #c3c3c3;
+	}
+	form
+	{
+		padding: 10px 0 0 0;
+		border-top: 1px solid #fff;
+	}
+	input.text
+	{
+		width: 255px;
+		border: 1px solid #919191;
+		border-radius: 5px;
+		line-height: 24px;
+	}
+	input.action
+	{
+		margin: 10px 0 0 0;
+		background: #ECECEC;
+		border: 1px solid #919191;
+		border-radius: 5px;
+		font-weight: 700;
+		line-height: 15px;
+		cursor: pointer;
+		&:hover
+		{
+			background: #fff;
+			border: 1px solid #919191;
+		}
+	}
+}
+
+#entireList
+{
+	float:left;
+	width: 235px;
+	input.action
+	{
+		float: right;
+		width: 235px;
+		margin: 22px 0 0 0;
+		background: #539F1F;
+		border: 1px solid #1C6E03;
+		color: #fff;
+		border-radius: 5px;
+		font-weight: 700;
+		font-size: 18px;
+		line-height: 40px;
+		cursor: pointer;
+		&:hover
+		{
+			background: #48BA13;
+			border: 1px solid #29A708;
+		}
+	}
+}
