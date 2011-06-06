@@ -18,9 +18,10 @@ class DefNewsletterSubscriberList Extends Page {
 			'DefNewsletterSubscriber',
 			array('Email' => 'Email'), 'getCMSFields_forPopup'
 		);
-		$subscriberField->setAddTitle('Subscribers');
+		$subscriberField->setAddTitle(_t('DEF_NEWSLETTER.ADDNEWSLETTERSUBSCRIBER', 'Newsletter Subscriber'));
 
 		$f->addFieldToTab('Root.Content.Subscribers', $subscriberField);
+		$f->fieldByName('Root.Content.Subscribers')->setTitle(_t('DEF_NEWSLETTER.NEWSLETTERSUBSCRIBERS', 'Newsletter Subscribers'));
 	
 		return $f;
 	}

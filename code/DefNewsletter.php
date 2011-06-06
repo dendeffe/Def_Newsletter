@@ -22,8 +22,13 @@ class DefNewsletter extends Page {
 			       'Title' => 'Title'
 			), 'getCMSFields_forPopup'
 		);
-        $listField->setAddTitle('Subscriber lists');
+		$listField->setPluralTitle(_t('DEF_NEWSLETTER.NEWSLETTERSUBSCRIBERLISTS', 'Newsletter Subscriber Lists'));
+		$listField->permissions = array(
+			"show"
+		);
         $f->addFieldToTab('Root.Content.SubscriberLists', $listField);
+		
+		$f->fieldByName('Root.Content.SubscriberLists')->setTitle(_t('DEF_NEWSLETTER.NEWSLETTERSUBSCRIBERLISTS', 'Newsletter Subscriber Lists'));
         return $f;
 	}
 	
@@ -214,7 +219,7 @@ class DefNewsletter_Controller extends Page_Controller {
 
 		} else {
 
-			$myDisplayRecipients = "<p>Geen emailadressen</p>";
+			$myDisplayRecipients = "<p>No e-mail addresses</p>";
 
 		}
 
