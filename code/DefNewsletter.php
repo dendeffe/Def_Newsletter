@@ -39,8 +39,13 @@ class DefNewsletter_Controller extends Page_Controller {
 		parent::init();
 		Requirements::clear();
 		Requirements::javascript('sapphire/thirdparty/jquery/jquery-packed.js');
+		Requirements::javascript('sapphire/thirdparty/jquery-ui/jquery.ui.core.js');
+		Requirements::javascript('sapphire/thirdparty/jquery-ui/jquery.ui.position.js');
+		Requirements::javascript('sapphire/thirdparty/jquery-ui/jquery.ui.widget.js');
+		Requirements::javascript('sapphire/thirdparty/jquery-ui/jquery.ui.dialog.js');
 		Requirements::javascript('def_newsletter/javascript/def_newsletter.js');
 		Requirements::css('def_newsletter/css/def_newsletter.css');
+		Requirements::css('sapphire/thirdparty/jquery-ui-themes/base/jquery.ui.all.css');
 	}
 	
 	function TestMailForm(){

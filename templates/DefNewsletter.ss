@@ -49,6 +49,15 @@ $RedirectNonAdmins
 			$SendEntireListForm
 			</div>
 		</div>
+		<div id="dialogModal" title="Are you sure you want to do this?">
+			<p>This will send the newsletter to all subscribers.</p>
+		</div>
+		<div id="dialogConfirm" title="">
+			<p>The email was sent to all subscribers.</p>
+		</div>
+		<div id="dialogTestmailConfirm" title="">
+			<p>Testmail was sent.</p>
+		</div>
 	</div><!-- #mailInfo -->
 	$HTMLFooter
 <% end_if %>
