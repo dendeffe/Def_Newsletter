@@ -1,1 +1,1 @@
-<p>Je inschrijving is nu ook bevestigd! Welkom op de nieuwsbrief</p>
+<p>Your subscription has been confirmed. Welcome to the newsletter.</p>
